@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+        }
+        section {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #4CAF50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="number"], select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            display: block;
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+        .user-info span {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .logout-btn {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Farmer Dashboard</h1>
+    <div class="user-info">
+      <?php
+            session_start();
+            if (isset($_SESSION['username'])) {
+                echo "<span>Welcome RythuMitra!</span>";
+            } 
+      ?>
+        <form action="Template.html" style="display: inline;">
+            <button type="button" class="logout-btn" onclick="window.location.href='Login.html'">Logout</button>
+        </form>
+    </div>
+</header>
+
+<section id="crop-selection">   
+    <form action="insert_crop_data.php" method="POST">
+        <h2>Select Crop and Variety</h2>
+        
+        <label for="crop">Select Crop:</label>
+        <select id="crop" name="crop" onchange="updateVarieties()" required>
+            <option value="">--Select Crop--</option>
+            <option value="paddy">Paddy</option>
+            <option value="blackgram">Black Gram</option>
+        </select>
+
+        <label for="variety">Select Variety:</label>
+        <select id="variety" name="variety" required>
+            <option value="">--Select Variety--</option>
+        </select>
+
+        <label for="defect-percentage">Defect Percentage (%):</label>
+        <input type="number" id="defect-percentage" name="defect-percentage" min="0" max="50" placeholder="Enter defect %" required>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" placeholder="Location will be fetched automatically" readonly>
+        <button type="button" onclick="getLocation()">Get Current Location</button>
+        
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" rows="3" placeholder="Enter your full address" required></textarea>
+
+        <label for="bags">Number of Bags (approx. 75 kg each):</label>
+        <input type="number" id="bags" name="bags" min="1" placeholder="Enter number of bags" required>
+        
+        <label for="contact-no">Contact No:</label>
+        <input type="text" id="contact-no" name="contact-no" pattern="[0-9]{10}" placeholder="Enter your Mobile number" required>
+
+        <button type="submit" id="open-market-btn">Open to Market</button>
+    </form>
+</section>
+
+<footer>
+    <p>&copy; <span id="current-year"></span> [Farm Name]. All Rights Reserved.</p>
+</footer>
+
+<script>
+  const cropVarieties = {
+      paddy: ["Swarna", "1061 OR 1318", "BPT OR 1224", "Basmati"],
+      blackgram: ["polished", "Un-polished"]
+  };
+  
+  function updateVarieties() {
+      const cropSelect = document.getElementById("crop");
+      const varietySelect = document.getElementById("variety");
+      varietySelect.innerHTML = '<option value="">--Select Variety--</option>'; // Reset the options before adding new ones
+
+      const selectedCrop = cropSelect.value;
+      
+      // Check if crop is selected and has corresponding varieties
+      if (selectedCrop && cropVarieties[selectedCrop]) {
+          cropVarieties[selectedCrop].forEach(function(variety) {
+              const option = document.createElement("option");
+              option.value = variety;
+              option.textContent = variety;
+              varietySelect.appendChild(option);
+          });
+      }
+  }
+
+  function getLocation() {
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition, showError);
+      } else {
+          alert("Geolocation is not supported by this browser.");
+      }
+  }
+
+  function showPosition(position) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      document.getElementById("location").value = `Lat: ${latitude}, Long: ${longitude}`;
+      
+      fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`)
+          .then(response => response.json())
+          .then(data => {
+              if (data && data.display_name) {
+                  document.getElementById("address").value = data.display_name;
+              } else {
+                  document.getElementById("address").value = "Address not found.";
+              }
+          })
+          .catch(error => {
+              console.error("Error fetching address:", error);
+              document.getElementById("address").value = "Error fetching address. Please try again.";
+          });
+  }
+
+  function showError(error) {
+      switch(error.code) {
+          case error.PERMISSION_DENIED:
+              alert("User denied the request for Geolocation.");
+              break;
+          case error.POSITION_UNAVAILABLE:
+              alert("Location information is unavailable.");
+              break;
+          case error.TIMEOUT:
+              alert("The request to get user location timed out.");
+              break;
+          case error.UNKNOWN_ERROR:
+              alert("An unknown error occurred.");
+              break;
+      }
+  }
+
+  // Set the current year in the footer
+  document.getElementById("current-year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

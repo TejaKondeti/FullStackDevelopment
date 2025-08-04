@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer List</title>
+    <style>
+        /* Simple CSS Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f4f6;
+        }
+        .dashboard {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .farmer-card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="dashboard">
+    <h2>Farmers Open to Network</h2>
+    <div id="farmer-list">
+        <!-- Farmer information will be dynamically populated here -->
+    </div>
+</div>
+
+<script>
+    // Fetch farmer data from the backend
+    function fetchFarmerData() {
+        fetch('fetch_farmers.php')  // Update with your actual PHP script location
+            .then(response => response.json())
+            .then(data => displayFarmers(data))
+            .catch(error => console.error("Error fetching farmer information:", error));
+    }
+
+    // Display farmers and add proposal button
+    function displayFarmers(farmers) {
+        const farmerListDiv = document.getElementById("farmer-list");
+        farmers.forEach(farmer => {
+            const farmerDiv = document.createElement("div");
+            farmerDiv.classList.add("farmer-card");
+            farmerDiv.innerHTML = `
+                <h3>${farmer.name}</h3>
+                <p>Crop: ${farmer.crop}</p>
+                <p>Variety: ${farmer.variety}</p>
+                <p>Defect %: ${farmer.defectPercentage}</p>
+                <p>Location: ${farmer.location}</p>
+                <p>Address: ${farmer.address}</p>
+                <p>Bags: ${farmer.bags}</p>
+                <button onclick="redirectToMarketerDashboard(${farmer.id})">Make Proposal</button>
+            `;
+            farmerListDiv.appendChild(farmerDiv);
+        });
+    }
+
+    // Redirect to marketer dashboard with farmer ID
+    function redirectToMarketerDashboard(farmerId) {
+        window.location.href = `marketer_dashboard.html?farmerId=${farmerId}`;
+    }
+
+    // Fetch farmer data on page load
+    window.onload = fetchFarmerData;
+</script>
+
+</body>
+</html>

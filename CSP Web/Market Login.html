@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width", initial-scale="1.0">
+    <title>Login Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .container {
+            display: flex;
+            gap:50px;
+        }
+        .login-box {
+            width: 300px;
+            padding: 50px;
+            background-color: #e5f5db;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .login-box h2 {
+            color: #218838;
+            font-size: 18px;
+            margin: 0 0 20px;
+        }
+        .login-box label {
+            display: block;
+            color: #d00;
+            margin: 10px 0 5px;
+        }
+        .login-box input[type="text"],
+        .login-box input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .login-box button {
+            background-color: #218838;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius:20px;
+            cursor: pointer;
+            font-weight:bold;
+        }
+        .login-box button:hover {
+            background-color: #218838;
+        }
+        .login-icon {
+            width: 50px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body background="loginback.webp">
+
+<div class="container">
+    <div class="login-box">
+        <img src=" MarketLogo.webp" alt="Marketer Icon" class="login-icon"/>
+        <h2>Marketer Login</h2>
+        <form action="MarketLogin.php" method="post"> 
+            <input type="text" placeholder="Aadhar Number" id="farmer-username" name="farmer-username" required>
+            <input type="password" placeholder="password" id="farmer-password" name="farmer-password" required>
+            <button type="submit">LOGIN</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

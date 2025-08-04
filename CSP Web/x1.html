@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        section {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #4CAF50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="number"], select, input[type="file"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            display: block;
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+    </style>
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Farmer Dashboard</h1>
+    <p>Manage Your Crops and Prepare for Market</p>
+</header>
+
+<section id="crop-selection">
+    <h2>Select Crop and Variety</h2>
+    
+    <label for="crop">Select Crop:</label>
+    <select id="crop" onchange="updateVarieties()">
+        <option value="">--Select Crop--</option>
+        <option value="paddy">Paddy</option>
+        <option value="blackgram">Black Gram</option>
+    </select>
+
+    <label for="variety">Select Variety:</label>
+    <select id="variety">
+        <option value="">--Select Variety--</option>
+    </select>
+
+    <label for="defect-percentage">Defect Percentage (%):</label>
+    <input type="number" id="defect-percentage" name="defect-percentage" min="0" max="50" placeholder="Enter defect %">
+    <!-- Location and Address Fields -->
+    <label for="location">Location:</label>
+    <input type="text" id="location" name="location" placeholder="Location will be fetched automatically" readonly>
+    <button type="button" onclick="getLocation()">Get Current Location</button>
+    
+    <label for="address">Address:</label>
+    <textarea id="address" name="address" rows="3" placeholder="Enter your full address"></textarea>
+
+    <button id="open-market-btn">Open to Market</button>
+</section>
+
+<footer>
+    <p>&copy; [Year] [Farm Name]. All Rights Reserved.</p>
+</footer>
+
+<script>
+  const cropVarieties = {
+      paddy: ["Swarna", "1061 OR 1318", "BPT OR 1224", "Basmati"],
+      blackgram: ["polished", "Un-polished"]
+  };
+  
+  function updateVarieties() {
+      const cropSelect = document.getElementById("crop");
+      const varietySelect = document.getElementById("variety");
+      varietySelect.innerHTML = '<option value="">--Select Variety--</option>';
+      const selectedCrop = cropSelect.value;
+
+      if (selectedCrop && cropVarieties[selectedCrop]) {
+          cropVarieties[selectedCrop].forEach(function(variety) {
+              const option = document.createElement("option");
+              option.value = variety;
+              option.textContent = variety;
+              varietySelect.appendChild(option);
+          });
+      }
+  }
+
+  // Function to get current location using Geolocation API
+  function getLocation() {
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition, showError);
+      } else {
+          alert("Geolocation is not supported by this browser.");
+      }
+  }
+
+  // Function to display latitude and longitude and fetch address
+  function showPosition(position) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      document.getElementById("location").value = `Lat: ${latitude}, Long: ${longitude}`;
+      
+      // Call reverse geocoding API to get address
+      fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`)
+          .then(response => response.json())
+          .then(data => {
+              if (data && data.display_name) {
+                  document.getElementById("address").value = data.display_name;
+              } else {
+                  document.getElementById("address").value = "Address not found.";
+              }
+          })
+          .catch(error => {
+              console.error("Error fetching address:", error);
+              document.getElementById("address").value = "Error fetching address.";
+          });
+  }
+
+  // Function to handle errors in Geolocation
+  function showError(error) {
+      switch(error.code) {
+          case error.PERMISSION_DENIED:
+              alert("User denied the request for Geolocation.");
+              break;
+          case error.POSITION_UNAVAILABLE:
+              alert("Location information is unavailable.");
+              break;
+          case error.TIMEOUT:
+              alert("The request to get user location timed out.");
+              break;
+          case error.UNKNOWN_ERROR:
+              alert("An unknown error occurred.");
+              break;
+      }
+  }
+
+  document.getElementById('open-market-btn').onclick = function() {
+      const selectedCrop = document.getElementById("crop").value;
+      const selectedVariety = document.getElementById("variety").value;
+      const location = document.getElementById("location").value;
+      const address = document.getElementById("address").value;
+  
+      if (selectedCrop && selectedVariety && location && address) {
+          alert(`Your ${selectedVariety} of ${selectedCrop} from ${location} is now open to market!`);
+      } else {
+          alert('Please fill out all fields before proceeding.');
+      }
+  };
+</script>
+
+</body>
+</html>

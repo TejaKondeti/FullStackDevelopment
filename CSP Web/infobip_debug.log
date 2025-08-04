@@ -1,0 +1,81 @@
+Sending to: +919347958399
+HTTP Status: 400
+Response: {"requestError":{"serviceException":{"messageId":"BAD_REQUEST","text":"Bad request","validationErrors":{"messages[0].destinations":["must not be empty"]}}}}
+Sending to: +919347958399
+HTTP Status: 400
+Response: {"requestError":{"serviceException":{"messageId":"BAD_REQUEST","text":"Bad request","validationErrors":{"messages[0].destinations":["must not be empty"]}}}}
+Sending to: +919347958399
+HTTP Status: 200
+Response: {"messages":[{"messageId":"4324473720564335373195","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+919347958399"}]}
+Sending to: +919347958399
+HTTP Status: 200
+Response: {"messages":[{"messageId":"4324474656044335896542","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+919347958399"}]}
+Sending to: +919347958399
+HTTP Status: 200
+Response: {"messages":[{"messageId":"4324476233494335260244","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+919347958399"}]}
+Sending to: +919347958399
+HTTP Status: 200
+Response: {"messages":[{"messageId":"4324477587444335779400","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+919347958399"}]}
+Sending to: +919347958399
+HTTP Status: 200
+Response: {"messages":[{"messageId":"4324479427804335388744","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+919347958399"}]}
+Sending to: +919347958399
+HTTP Status: 200
+Response: {"messages":[{"messageId":"4324480247104335268635","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+919347958399"}]}
+Sending to: +919347958399
+HTTP Status: 200
+Response: {"messages":[{"messageId":"4325077258184335694371","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+919347958399"}]}
+Sending to: +919347958399
+HTTP Status: 200
+Response: {"messages":[{"messageId":"4325167571594335522065","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+919347958399"}]}
+Sending to: +919347958399
+HTTP Status: 200
+Response: {"messages":[{"messageId":"4325324514054335243332","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+919347958399"}]}
+Sending to: +919347958399
+HTTP Status: 200
+Response: {"messages":[{"messageId":"4325325195414335885244","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+919347958399"}]}
+Sending to: +919347958399
+HTTP Status: 200
+Response: {"messages":[{"messageId":"4325332931084335935681","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+919347958399"}]}
+Sending to: +919347958399
+HTTP Status: 200
+Response: {"messages":[{"messageId":"4325817598524335401658","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+919347958399"}]}
+Sending to: +919347958399
+HTTP Status: 200
+Response: {"messages":[{"messageId":"4325818192604335394579","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+919347958399"}]}
+Sending to: +919347958399
+HTTP Status: 200
+Response: {"messages":[{"messageId":"4326016098644335656596","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+919347958399"}]}
+Sending to: +919347958399
+HTTP Status: 200
+Response: {"messages":[{"messageId":"4326021004394335991527","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+919347958399"}]}
+Sending to: +919347958399
+HTTP Status: 200
+Response: {"messages":[{"messageId":"4326030360944335260629","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+919347958399"}]}
+Sending to: +919347958399
+HTTP Status: 0
+Response: 
+Sending to: +919347958399
+HTTP Status: 200
+Response: {"messages":[{"messageId":"4326033400804335696037","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+919347958399"}]}
+Sending to: +919347958399
+HTTP Status: 200
+Response: {"messages":[{"messageId":"4331220636114335622117","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+919347958399"}]}
+Sending to: +919347958399
+HTTP Status: 200
+Response: {"messages":[{"messageId":"4406528593334335708805","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+919347958399"}]}
+Sending to: +919347958399
+HTTP Status: 200
+Response: {"messages":[{"messageId":"4407197547224335335161","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+919347958399"}]}
+Sending to: +919347958399
+HTTP Status: 200
+Response: {"messages":[{"messageId":"4407197548964335601392","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+919347958399"}]}
+Sending to: +919347958399
+HTTP Status: 200
+Response: {"messages":[{"messageId":"4429697726334335673971","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+919347958399"}]}
+Sending to: +919347958399
+HTTP Status: 200
+Response: {"messages":[{"messageId":"4429708552544335601329","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+919347958399"}]}
+Sending to: +919347958399
+HTTP Status: 403
+Response: {"requestError":{"serviceException":{"messageId":"UNAUTHORIZED","text":"Unauthorized access"}}}

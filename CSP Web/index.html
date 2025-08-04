@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commodity Prices</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+            max-width: 600px;
+            background: #ffffff;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .error {
+            color: red;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Commodity Prices for Andhra Pradesh</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody id="price-table">
+            <tr><td colspan="2">Loading...</td></tr>
+        </tbody>
+    </table>
+    <p id="error-message" class="error"></p>
+    <script>
+        // Fetch data from the PHP backend
+        fetch('fetch_prices.php')
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.getElementById('price-table');
+                const errorMessage = document.getElementById('error-message');
+
+                if (data.error) {
+                    errorMessage.textContent = data.error;
+                    tableBody.innerHTML = '<tr><td colspan="2">No data available</td></tr>';
+                } else {
+                    tableBody.innerHTML = `
+                        <tr>
+                            <td>Average Price</td>
+                            <td>${data.average_price}</td>
+                        </tr>
+                        <tr>
+                            <td>Lowest Price</td>
+                            <td>${data.lowest_price}</td>
+                        </tr>
+                        <tr>
+                            <td>Highest Price</td>
+                            <td>${data.highest_price}</td>
+                        </tr>
+                    `;
+                }
+            })
+            .catch(error => {
+                document.getElementById('error-message').textContent = 'Error fetching data';
+                console.error(error);
+            });
+    </script>
+</body>
+</html>

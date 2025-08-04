@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration Page</title>
+<style>
+  body {
+    color:red ;
+    background-color: #ffffff;
+    font-family:  sans-serif;
+  }
+
+  .container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color:#ffffff;
+    border: 2px solid #4CAF50; 
+    box-shadow: 0px 0px 10px rgba(4, 65, 13, 0.1);
+    border-radius: 8px;
+  }
+
+  fieldset {
+    border: none;
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 24pt;
+    color: #218838;
+  }
+
+  label {
+    font-size: 16pt;
+    color: #000;;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="mail"],
+  input[type="date"],
+  select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16pt;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+
+  .button-container {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+  .submit-btn {
+    background-color:#218838;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16pt;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .reset-btn {
+    background-color: #dc3545;
+    color:#ffffff;
+    padding: 10px 20px;
+    font-size: 16pt;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+
+  .submit-btn:hover {
+    background-color: #218838;
+  }
+
+  .reset-btn:hover {
+    background-color: #c82333;
+  }
+</style>
+</head>
+<body background="webimg1.jpg">
+<div class="container">
+  <fieldset>
+    <h1><b>Registration Page</b></h1>
+    <form name="f" action="Insert.php" method="post">
+      <table align="center" cellspacing="15px">
+        <tr>
+          <td><label><b>Role</label></td>
+          <td><select id="s" name="r"><option>Select</option>
+            <option>Farmer</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td><label><b>Name</b></label></td>
+          <td><input type="text" name="t0"></td>
+          <td><small id="s1" style="color: yellow"></small></td>
+        </tr>
+        <tr>
+          <td><label><b>Enter Aadhar number</b></label></td>
+          <td><input type="text" name="t1"></td>
+          <td><small id="s1" style="color: yellow"></small></td>
+        </tr>
+        <tr>
+          <td><label><b>Enter password</b></label></td>
+          <td><input type="password" name="p1"></td>
+        </tr>
+        <tr>
+          <td><label><b>Confirm password</b></label></td>
+          <td><input type="password" name="p2"></td>
+        </tr>
+        <tr>
+          <td><label><b>Mobile Number</b></label></td>
+          <td><input type="text" name="m2"></td>
+        </tr>
+        <tr>
+          <td><label><b>Gender</b></label></td>
+          <td><select id="s" name="g"><option>Select</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Others</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td><label><b>Date of Birth</b></label></td>
+          <td><input type="date" name="d"></td>
+        </tr>
+        <tr>
+        
+        </tr>
+        <tr>
+        
+        </tr>
+      </table>
+      <div class="button-container">
+        <button type="submit" class="submit-btn">Register</button>
+        <button class="reset-btn" type="reset" name="r">Reset</button>
+      </div>
+    </form>
+  </fieldset>
+</div>
+
+</body>
+</html>
